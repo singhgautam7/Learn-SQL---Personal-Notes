@@ -168,6 +168,8 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 ### Basic SELECT queries
 ```sql
 SELECT * FROM employee;
+
+
 OUTPUT -
 +--------+------------+-----------+------------+------+--------+----------+-----------+
 | emp_id | first_name | last_name | birth_day  | sex  | salary | super_id | branch_id |
