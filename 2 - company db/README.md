@@ -168,9 +168,7 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 ### Basic SELECT queries
 ```sql
 SELECT * FROM employee;
-```
-```bash
-OUTPUT
+OUTPUT -
 +--------+------------+-----------+------------+------+--------+----------+-----------+
 | emp_id | first_name | last_name | birth_day  | sex  | salary | super_id | branch_id |
 +--------+------------+-----------+------------+------+--------+----------+-----------+
@@ -185,6 +183,7 @@ OUTPUT
 |    108 | Jim        | Halpert   | 1978-10-01 | M    |  71000 |      106 |         3 |
 +--------+------------+-----------+------------+------+--------+----------+-----------+
 ```
+
 ```sql
 SELECT * FROM employee;
 SELECT * FROM employee ORDER BY salary DESC;
@@ -194,15 +193,14 @@ SELECT first_name as f, last_name as l FROM employee ORDER BY f, l;
 ### Distinct
 ```sql
 SELECT DISTINCT sex FROM employee;
-```
-```bash
-OUTPUT -
-+------+
-| sex  |
-+------+
-| M    |
-| F    |
-+------+
+
+-- OUTPUT -
+-- +------+
+-- | sex  |
+-- +------+
+-- | M    |
+-- | F    |
+-- +------+
 ```
 
 ### Aggregation commands
@@ -216,15 +214,14 @@ SELECT SUM(SALARY) FROM employee;
 ### Find out male and female count
 ```sql
 SELECT COUNT(sex), sex FROM employee GROUP BY sex;
-```
-```bash
-OUTPUT -
-+------------+------+
-| COUNT(sex) | sex  |
-+------------+------+
-|          6 | M    |
-|          3 | F    |
-+------------+------+
+
+-- OUTPUT -
+-- +------------+------+
+-- | COUNT(sex) | sex  |
+-- +------------+------+
+-- |          6 | M    |
+-- |          3 | F    |
+-- +------------+------+
 ```
 
 ### Find total sales of each salesman
@@ -232,17 +229,16 @@ OUTPUT -
 SELECT SUM(total_sales), emp_id
 FROM works_with
 GROUP BY emp_id;
-```
-```bash
-OUTPUT -
-+------------------+--------+
-| SUM(total_sales) | emp_id |
-+------------------+--------+
-|           282000 |    102 |
-|           218000 |    105 |
-|            31000 |    107 |
-|            34500 |    108 |
-+------------------+--------+
+
+-- OUTPUT -
+-- +------------------+--------+
+-- | SUM(total_sales) | emp_id |
+-- +------------------+--------+
+-- |           282000 |    102 |
+-- |           218000 |    105 |
+-- |            31000 |    107 |
+-- |            34500 |    108 |
+-- +------------------+--------+
 ```
 
 ### Find total sales of each sales man
@@ -266,17 +262,16 @@ FROM works_with
 INNER JOIN employee
 ON works_with.emp_id = employee.emp_id
 GROUP BY works_with.emp_id;
-```
-```bash
-OUTPUT -
-+-----------------+--------+----------------+
-| sum_total_sales | emp_id | name           |
-+-----------------+--------+----------------+
-|          282000 |    102 | Michael Scott  |
-|          218000 |    105 | Stanley Hudson |
-|           31000 |    107 | Andy Bernard   |
-|           34500 |    108 | Jim Halpert    |
-+-----------------+--------+----------------+
+
+-- OUTPUT -
+-- +-----------------+--------+----------------+
+-- | sum_total_sales | emp_id | name           |
+-- +-----------------+--------+----------------+
+-- |          282000 |    102 | Michael Scott  |
+-- |          218000 |    105 | Stanley Hudson |
+-- |           31000 |    107 | Andy Bernard   |
+-- |           34500 |    108 | Jim Halpert    |
+-- +-----------------+--------+----------------+
 ```
 
 ### Find any client's who are an LLC (name ends with LLC)
@@ -311,25 +306,24 @@ FROM employee
 UNION
 SELECT branch_name
 FROM branch;
-```
-```bash
-OUTPUT -
-+------------+
-| first_name |
-+------------+
-| David      |
-| Jan        |
-| Michael    |
-| Angela     |
-| Kelly      |
-| Stanley    |
-| Josh       |
-| Andy       |
-| Jim        |
-| Corporate  |
-| Scranton   |
-| Stamford   |
-+------------+
+
+-- OUTPUT -
+-- +------------+
+-- | first_name |
+-- +------------+
+-- | David      |
+-- | Jan        |
+-- | Michael    |
+-- | Angela     |
+-- | Kelly      |
+-- | Stanley    |
+-- | Josh       |
+-- | Andy       |
+-- | Jim        |
+-- | Corporate  |
+-- | Scranton   |
+-- | Stamford   |
+-- +------------+
 ```
 
 ### Find a list of all money spent or earned by the company
@@ -340,30 +334,30 @@ UNION
 SELECT total_sales AS money, 'CREDIT' AS type
 FROM works_with
 ORDER BY money DESC;
-```
-```bash
-+--------+--------+
-| money  | type   |
-+--------+--------+
-| 267000 | CREDIT |
-| 250000 | DEBIT  |
-| 130000 | CREDIT |
-| 110000 | DEBIT  |
-|  78000 | DEBIT  |
-|  75000 | DEBIT  |
-|  71000 | DEBIT  |
-|  69000 | DEBIT  |
-|  65000 | DEBIT  |
-|  63000 | DEBIT  |
-|  55000 | DEBIT  |
-|  55000 | CREDIT |
-|  33000 | CREDIT |
-|  26000 | CREDIT |
-|  22500 | CREDIT |
-|  15000 | CREDIT |
-|  12000 | CREDIT |
-|   5000 | CREDIT |
-+--------+--------+
+
+-- OUTPUT -
+-- +--------+--------+
+-- | money  | type   |
+-- +--------+--------+
+-- | 267000 | CREDIT |
+-- | 250000 | DEBIT  |
+-- | 130000 | CREDIT |
+-- | 110000 | DEBIT  |
+-- |  78000 | DEBIT  |
+-- |  75000 | DEBIT  |
+-- |  71000 | DEBIT  |
+-- |  69000 | DEBIT  |
+-- |  65000 | DEBIT  |
+-- |  63000 | DEBIT  |
+-- |  55000 | DEBIT  |
+-- |  55000 | CREDIT |
+-- |  33000 | CREDIT |
+-- |  26000 | CREDIT |
+-- |  22500 | CREDIT |
+-- |  15000 | CREDIT |
+-- |  12000 | CREDIT |
+-- |   5000 | CREDIT |
+-- +--------+--------+
 ```
 
 ### Join
@@ -374,16 +368,15 @@ FROM employee
 JOIN branch
 ON employee.emp_id = branch.mgr_id;
 -- The general JOIN is what basically INNER JOIN is
-```
-```bash
-OUTPUT -
-+--------+------------+-------------+
-| emp_id | first_name | branch_name |
-+--------+------------+-------------+
-|    100 | David      | Corporate   |
-|    102 | Michael    | Scranton    |
-|    106 | Josh       | Stamford    |
-+--------+------------+-------------+
+
+-- OUTPUT -
+-- +--------+------------+-------------+
+-- | emp_id | first_name | branch_name |
+-- +--------+------------+-------------+
+-- |    100 | David      | Corporate   |
+-- |    102 | Michael    | Scranton    |
+-- |    106 | Josh       | Stamford    |
+-- +--------+------------+-------------+
 ```
 ```sql
 SELECT employee.emp_id, employee.first_name, branch.branch_name
@@ -392,39 +385,37 @@ LEFT JOIN branch
 ON employee.emp_id = branch.mgr_id;
 -- With LEFT JOIN, we include all rows from the Left table, leaving all the other column values as null
 -- Left table is table used in FROM
-```
-```bash
-OUTPUT -
-+--------+------------+-------------+
-| emp_id | first_name | branch_name |
-+--------+------------+-------------+
-|    100 | David      | Corporate   |
-|    101 | Jan        | NULL        |
-|    102 | Michael    | Scranton    |
-|    103 | Angela     | NULL        |
-|    104 | Kelly      | NULL        |
-|    105 | Stanley    | NULL        |
-|    106 | Josh       | Stamford    |
-|    107 | Andy       | NULL        |
-|    108 | Jim        | NULL        |
-+--------+------------+-------------+
+
+-- OUTPUT -
+-- +--------+------------+-------------+
+-- | emp_id | first_name | branch_name |
+-- +--------+------------+-------------+
+-- |    100 | David      | Corporate   |
+-- |    101 | Jan        | NULL        |
+-- |    102 | Michael    | Scranton    |
+-- |    103 | Angela     | NULL        |
+-- |    104 | Kelly      | NULL        |
+-- |    105 | Stanley    | NULL        |
+-- |    106 | Josh       | Stamford    |
+-- |    107 | Andy       | NULL        |
+-- |    108 | Jim        | NULL        |
+-- +--------+------------+-------------+
 ```
 ```sql
 SELECT employee.emp_id, employee.first_name, branch.branch_name
 FROM employee
 RIGHT JOIN branch
 ON employee.emp_id = branch.mgr_id;
-```
-```bash
-OUTPUT -
-+--------+------------+-------------+
-| emp_id | first_name | branch_name |
-+--------+------------+-------------+
-|    100 | David      | Corporate   |
-|    102 | Michael    | Scranton    |
-|    106 | Josh       | Stamford    |
-|   NULL | NULL       | Buffalo     |
-+--------+------------+-------------+
+
+-- OUTPUT -
+-- +--------+------------+-------------+
+-- | emp_id | first_name | branch_name |
+-- +--------+------------+-------------+
+-- |    100 | David      | Corporate   |
+-- |    102 | Michael    | Scranton    |
+-- |    106 | Josh       | Stamford    |
+-- |   NULL | NULL       | Buffalo     |
+-- +--------+------------+-------------+
 ```
 
 
