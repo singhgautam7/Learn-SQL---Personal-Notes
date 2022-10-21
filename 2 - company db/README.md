@@ -159,7 +159,7 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 </details>
 <br>
 
-<details>
+<details open>
 <summary></strong>Query</strong></summary>
 
 
