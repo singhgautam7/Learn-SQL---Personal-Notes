@@ -165,7 +165,7 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 
 ## Show employess
 
-### Basic SELECT queries
+## Basic SELECT queries
 ```sql
 SELECT * FROM employee;
 
@@ -191,7 +191,7 @@ SELECT * FROM employee ORDER BY salary DESC;
 SELECT first_name as f, last_name as l FROM employee ORDER BY f, l;
 ```
 
-### Distinct
+## Distinct
 ```sql
 SELECT DISTINCT sex FROM employee;
 
@@ -204,7 +204,7 @@ SELECT DISTINCT sex FROM employee;
 -- +------+
 ```
 
-### Aggregation commands
+## Aggregation
 ```sql
 SELECT COUNT(super_id) FROM employee;
 SELECT COUNT(emp_id) FROM employee WHERE sex = 'F' AND birth_day > '1970-01-01';
@@ -212,8 +212,8 @@ SELECT AVG(SALARY) FROM employee;
 SELECT SUM(SALARY) FROM employee;
 ```
 
-### Find out male and female count
 ```sql
+-- Find out male and female count
 SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 
 -- OUTPUT -
@@ -225,8 +225,8 @@ SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 -- +------------+------+
 ```
 
-### Find total sales of each salesman
 ```sql
+-- Find total sales of each salesman
 SELECT SUM(total_sales), emp_id
 FROM works_with
 GROUP BY emp_id;
@@ -242,22 +242,22 @@ GROUP BY emp_id;
 -- +------------------+--------+
 ```
 
-### Find total sales of each sales man
 ```sql
+-- Find total sales of each sales man
 SELECT SUM(total_sales), emp_id
 FROM works_with
 GROUP BY emp_id;
 ```
 
-### Find total money each client spent
 ```sql
+-- Find total money each client spent
 SELECT SUM(total_sales), client_id
 FROM works_with
 GROUP BY client_id;
 ```
 
-### Find total sales of each sales man with employee name
 ```sql
+-- Find total sales of each sales man with employee name
 SELECT SUM(works_with.total_sales) AS sum_total_sales, works_with.emp_id, CONCAT(employee.first_name, ' ', employee.last_name) AS name
 FROM works_with
 INNER JOIN employee
@@ -275,18 +275,18 @@ GROUP BY works_with.emp_id;
 -- +-----------------+--------+----------------+
 ```
 
-### Find any client's who are an LLC (name ends with LLC)
+## Wildcards
+% = any number of characters
+_ = one character
 ```sql
--- Using wildcards in this example
--- % = any number of characters
--- _ = one character
+-- Find any client's who are an LLC (name ends with LLC)
 SELECT *
 FROM client
 WHERE client_name LIKE '%LLC';
 ```
 
-### Find the employees born in october
 ```sql
+-- Find the employees born in october
 SELECT *
 FROM employee
 WHERE birth_day LIKE '____-10-__';
@@ -298,10 +298,11 @@ FROM employee
 WHERE birth_day LIKE '____-10%';
 ```
 
-### Find a list of employee and branch name
+## Union
+For union, same number of columns and same data type is required by both the queries from union
+
 ```sql
--- Union example
--- For union, same number of columns and same data type is required by both the queries from union
+-- Find a list of employee and branch name
 SELECT first_name
 FROM employee
 UNION
@@ -325,10 +326,8 @@ FROM branch;
 -- | Scranton   |
 -- | Stamford   |
 -- +------------+
-```
 
-### Find a list of all money spent or earned by the company
-```sql
+-- Find a list of all money spent or earned by the company
 SELECT salary AS money, 'DEBIT' AS type
 FROM employee
 UNION
@@ -361,7 +360,7 @@ ORDER BY money DESC;
 -- +--------+--------+
 ```
 
-### Join
+## Join
 ```sql
 -- Find all branches and the names of their manager
 SELECT employee.emp_id, employee.first_name, branch.branch_name
@@ -419,8 +418,7 @@ ON employee.emp_id = branch.mgr_id;
 -- +--------+------------+-------------+
 ```
 
-### Nested queries
-
+## Nested queries
 ```sql
 -- Find the names of all employees who have sold more than 30k to a single client
 SELECT employee.first_name, employee.last_name
@@ -460,8 +458,6 @@ WHERE client.branch_id = (
 -- | FedEx               |
 -- +---------------------+
 ```
-
-
 
 
 </details>
