@@ -162,9 +162,6 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 <details open>
 <summary></strong>Query</strong></summary>
 
-
-## Show employess
-
 ## Basic SELECT queries
 ```sql
 SELECT * FROM employee;
@@ -277,6 +274,7 @@ GROUP BY works_with.emp_id;
 
 ## Wildcards
 % = any number of characters
+<br>
 _ = one character
 ```sql
 -- Find any client's who are an LLC (name ends with LLC)
