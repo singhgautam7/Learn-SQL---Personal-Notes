@@ -438,7 +438,7 @@ WHERE employee.emp_id IN (
 ```
 
 ```sql
--- Find all clients who are handled by the branch that Michael Scott manages assuming you know Michael's IDI
+-- Find all clients who are handled by the branch that Michael Scott manages assuming you know Michael's emp_id
 SELECT client.client_name
 FROM client
 WHERE client.branch_id = (
