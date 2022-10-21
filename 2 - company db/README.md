@@ -359,13 +359,16 @@ ORDER BY money DESC;
 ```
 
 ## Join
+- The general JOIN is what basically INNER JOIN is.
+- With LEFT JOIN, we include all rows from the Left table, leaving all the other column values as null.
+- Left table is table the table the we use in FROM.
+- There is also OUTER JOIN in some databases which includes all the rows from both left and right tables.
 ```sql
 -- Find all branches and the names of their manager
 SELECT employee.emp_id, employee.first_name, branch.branch_name
 FROM employee
 JOIN branch
 ON employee.emp_id = branch.mgr_id;
--- The general JOIN is what basically INNER JOIN is
 
 -- OUTPUT -
 -- +--------+------------+-------------+
@@ -381,8 +384,6 @@ SELECT employee.emp_id, employee.first_name, branch.branch_name
 FROM employee
 LEFT JOIN branch
 ON employee.emp_id = branch.mgr_id;
--- With LEFT JOIN, we include all rows from the Left table, leaving all the other column values as null
--- Left table is table used in FROM
 
 -- OUTPUT -
 -- +--------+------------+-------------+
