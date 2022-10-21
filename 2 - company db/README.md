@@ -117,6 +117,7 @@ INSERT INTO employee VALUES(105, 'Stanley', 'Hudson', '1958-02-19', 'M', 69000, 
 -- Stamford
 INSERT INTO employee VALUES(106, 'Josh', 'Porter', '1969-09-05', 'M', 78000, 100, NULL);
 INSERT INTO branch VALUES(3, 'Stamford', 106, '1998-02-13');
+INSERT INTO branch VALUES(4, 'Buffalo', NULL, NULL);
 
 UPDATE employee
 SET branch_id = 3
@@ -244,7 +245,21 @@ OUTPUT -
 +------------------+--------+
 ```
 
-### Find total sales of each sales man with first name and last name
+### Find total sales of each sales man
+```sql
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id;
+```
+
+### Find total money each client spent
+```sql
+SELECT SUM(total_sales), client_id
+FROM works_with
+GROUP BY client_id;
+```
+
+### Find total sales of each sales man with employee name
 ```sql
 SELECT SUM(works_with.total_sales) AS sum_total_sales, works_with.emp_id, CONCAT(employee.first_name, ' ', employee.last_name) AS name
 FROM works_with
@@ -263,6 +278,160 @@ OUTPUT -
 |           34500 |    108 | Jim Halpert    |
 +-----------------+--------+----------------+
 ```
+
+### Find any client's who are an LLC (name ends with LLC)
+```sql
+-- Using wildcards in this example
+-- % = any number of characters
+-- _ = one character
+SELECT *
+FROM client
+WHERE client_name LIKE '%LLC';
+```
+
+### Find the employees born in october
+```sql
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10-__';
+
+-- or
+
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
+```
+
+### Find a list of employee and branch name
+```sql
+-- Union example
+-- For union, same number of columns and same data type is required by both the queries from union
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+```
+```bash
+OUTPUT -
++------------+
+| first_name |
++------------+
+| David      |
+| Jan        |
+| Michael    |
+| Angela     |
+| Kelly      |
+| Stanley    |
+| Josh       |
+| Andy       |
+| Jim        |
+| Corporate  |
+| Scranton   |
+| Stamford   |
++------------+
+```
+
+### Find a list of all money spent or earned by the company
+```sql
+SELECT salary AS money, 'DEBIT' AS type
+FROM employee
+UNION
+SELECT total_sales AS money, 'CREDIT' AS type
+FROM works_with
+ORDER BY money DESC;
+```
+```bash
++--------+--------+
+| money  | type   |
++--------+--------+
+| 267000 | CREDIT |
+| 250000 | DEBIT  |
+| 130000 | CREDIT |
+| 110000 | DEBIT  |
+|  78000 | DEBIT  |
+|  75000 | DEBIT  |
+|  71000 | DEBIT  |
+|  69000 | DEBIT  |
+|  65000 | DEBIT  |
+|  63000 | DEBIT  |
+|  55000 | DEBIT  |
+|  55000 | CREDIT |
+|  33000 | CREDIT |
+|  26000 | CREDIT |
+|  22500 | CREDIT |
+|  15000 | CREDIT |
+|  12000 | CREDIT |
+|   5000 | CREDIT |
++--------+--------+
+```
+
+### Join
+```sql
+-- Find all branches and the names of their manager
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
+-- The general JOIN is what basically INNER JOIN is
+```
+```bash
+OUTPUT -
++--------+------------+-------------+
+| emp_id | first_name | branch_name |
++--------+------------+-------------+
+|    100 | David      | Corporate   |
+|    102 | Michael    | Scranton    |
+|    106 | Josh       | Stamford    |
++--------+------------+-------------+
+```
+```sql
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+LEFT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+-- With LEFT JOIN, we include all rows from the Left table, leaving all the other column values as null
+-- Left table is table used in FROM
+```
+```bash
+OUTPUT -
++--------+------------+-------------+
+| emp_id | first_name | branch_name |
++--------+------------+-------------+
+|    100 | David      | Corporate   |
+|    101 | Jan        | NULL        |
+|    102 | Michael    | Scranton    |
+|    103 | Angela     | NULL        |
+|    104 | Kelly      | NULL        |
+|    105 | Stanley    | NULL        |
+|    106 | Josh       | Stamford    |
+|    107 | Andy       | NULL        |
+|    108 | Jim        | NULL        |
++--------+------------+-------------+
+```
+```sql
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+RIGHT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+```
+```bash
+OUTPUT -
++--------+------------+-------------+
+| emp_id | first_name | branch_name |
++--------+------------+-------------+
+|    100 | David      | Corporate   |
+|    102 | Michael    | Scranton    |
+|    106 | Josh       | Stamford    |
+|   NULL | NULL       | Buffalo     |
++--------+------------+-------------+
+```
+
+
+
+
+
+
 
 </details>
 <br>
