@@ -1,12 +1,15 @@
 ﻿<details>
 <summary></strong>Schema</strong></summary>
-<br>
 <img src="./company-db.png" alt="Schema">
 </details>
 <br>
 
-# Definition
-### Create employee table
+<details>
+<summary></strong>Definition</strong></summary>
+<br>
+
+## Create employee table
+
 ```sql
 CREATE TABLE employee (
     emp_id INT PRIMARY KEY,
@@ -19,7 +22,8 @@ CREATE TABLE employee (
     branch_id INT
 );
 ```
-### Create branch table
+
+## Create branch table
 ```sql
 CREATE TABLE branch (
     branch_id INT PRIMARY KEY,
@@ -79,7 +83,13 @@ CREATE TABLE branch_supplier (
 );
 ```
 
-# Manipulation
+</details>
+<br>
+
+
+<details>
+<summary></strong>Manipulation</strong></summary>
+
 ```sql
 -- Corporate
 INSERT INTO employee VALUES(100, 'David', 'Wallace', '1967-11-17', 'M', 250000, NULL, NULL);
@@ -145,7 +155,12 @@ INSERT INTO works_with VALUES(102, 406, 15000);
 INSERT INTO works_with VALUES(105, 406, 130000);
 ```
 
-# Query
+</details>
+<br>
+
+<details>
+<summary></strong>Query</strong></summary>
+
 
 ## Show employess
 ```sql
@@ -246,3 +261,7 @@ OUTPUT -
 |           34500 |    108 | Jim Halpert    |
 +-----------------+--------+----------------+
 ```
+
+</details>
+<br>
+
