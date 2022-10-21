@@ -163,6 +163,8 @@ INSERT INTO works_with VALUES(105, 406, 130000);
 
 
 ## Show employess
+
+### Basic SELECT queries
 ```sql
 SELECT * FROM employee;
 ```
@@ -188,7 +190,7 @@ SELECT * FROM employee ORDER BY salary DESC;
 SELECT first_name as f, last_name as l FROM employee ORDER BY f, l;
 ```
 
-## Distinct
+### Distinct
 ```sql
 SELECT DISTINCT sex FROM employee;
 ```
@@ -202,7 +204,7 @@ OUTPUT -
 +------+
 ```
 
-## Aggregation commands
+### Aggregation commands
 ```sql
 SELECT COUNT(super_id) FROM employee;
 SELECT COUNT(emp_id) FROM employee WHERE sex = 'F' AND birth_day > '1970-01-01';
@@ -210,7 +212,7 @@ SELECT AVG(SALARY) FROM employee;
 SELECT SUM(SALARY) FROM employee;
 ```
 
-## Find out male and female count
+### Find out male and female count
 ```sql
 SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 ```
@@ -224,7 +226,7 @@ OUTPUT -
 +------------+------+
 ```
 
-## Find total sales of each salesman
+### Find total sales of each salesman
 ```sql
 SELECT SUM(total_sales), emp_id
 FROM works_with
@@ -242,7 +244,7 @@ OUTPUT -
 +------------------+--------+
 ```
 
-## Find total sales of each sales man with first name and last name
+### Find total sales of each sales man with first name and last name
 ```sql
 SELECT SUM(works_with.total_sales) AS sum_total_sales, works_with.emp_id, CONCAT(employee.first_name, ' ', employee.last_name) AS name
 FROM works_with
