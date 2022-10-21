@@ -200,11 +200,49 @@ SELECT SUM(SALARY) FROM employee;
 SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 ```
 ```bash
-OUTPUT
+OUTPUT -
 +------------+------+
 | COUNT(sex) | sex  |
 +------------+------+
 |          6 | M    |
 |          3 | F    |
 +------------+------+
+```
+
+## Find total sales of each salesman
+```sql
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id;
+```
+```bash
+OUTPUT -
++------------------+--------+
+| SUM(total_sales) | emp_id |
++------------------+--------+
+|           282000 |    102 |
+|           218000 |    105 |
+|            31000 |    107 |
+|            34500 |    108 |
++------------------+--------+
+```
+
+## Find total sales of each sales man with first name and last name
+```sql
+SELECT SUM(works_with.total_sales) AS sum_total_sales, works_with.emp_id, CONCAT(employee.first_name, ' ', employee.last_name) AS name
+FROM works_with
+INNER JOIN employee
+ON works_with.emp_id = employee.emp_id
+GROUP BY works_with.emp_id;
+```
+```bash
+OUTPUT -
++-----------------+--------+----------------+
+| sum_total_sales | emp_id | name           |
++-----------------+--------+----------------+
+|          282000 |    102 | Michael Scott  |
+|          218000 |    105 | Stanley Hudson |
+|           31000 |    107 | Andy Bernard   |
+|           34500 |    108 | Jim Halpert    |
++-----------------+--------+----------------+
 ```
