@@ -239,12 +239,14 @@ GROUP BY emp_id;
 -- |            34500 |    108 |
 -- +------------------+--------+
 ```
-
+The HAVING clause is utilized in SQL as a conditional clause with the GROUP BY clause. This conditional clause only returns rows where aggregate function results are matched with given conditions.
+The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
 ```sql
 -- Find total sales of each sales man
 SELECT SUM(total_sales), emp_id
 FROM works_with
-GROUP BY emp_id;
+GROUP BY emp_id
+HAVING emp_id > 103;
 ```
 
 ```sql
@@ -298,7 +300,9 @@ WHERE birth_day LIKE '____-10%';
 ```
 
 ## Union
-For union, same number of columns and same data type is required by both the queries from union
+For union, same number of columns and same data type is required by both the queries from union.
+- **UNION**: only keeps unique records
+- **UNION ALL**: keeps all records, including duplicates
 
 ```sql
 -- Find a list of employee and branch name
@@ -417,6 +421,29 @@ ON employee.emp_id = branch.mgr_id;
 -- |   NULL | NULL       | Buffalo     |
 -- +--------+------------+-------------+
 ```
+
+
+## Exists
+The EXISTS operator is used to test for the existence of any record in a subquery.
+The EXISTS operator returns TRUE if the subquery returns one or more records.
+```sql
+-- Find employees with no clients
+SELECT employee.first_name
+FROM employee
+WHERE NOT EXISTS (SELECT works_with.client_id FROM works_with WHERE employee.emp_id = works_with.emp_id);
+
+-- OUTPUT -
+-- +------------+
+-- | first_name |
+-- +------------+
+-- | David      |
+-- | Jan        |
+-- | Angela     |
+-- | Kelly      |
+-- | Josh       |
+-- +------------+
+```
+
 
 ## Nested queries
 ```sql
