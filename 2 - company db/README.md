@@ -487,6 +487,18 @@ WHERE client.branch_id = (
 ```
 
 
+## Stored Procedure
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+```sql
+CREATE PROCEDURE MyStoredProcedure
+AS
+SELECT DISTINCT sex FROM employee       -- sql statement
+GO;
+
+EXEC MyStoredProcedure;
+```
+
+
 </details>
 <br>
 
