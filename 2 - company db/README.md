@@ -222,6 +222,7 @@ SELECT COUNT(sex), sex FROM employee GROUP BY sex;
 -- +------------+------+
 ```
 
+The GROUP BY clause must follow the conditions in the WHERE clause and must precede the ORDER BY clause if one is used.
 ```sql
 -- Find total sales of each salesman
 SELECT SUM(total_sales), emp_id
