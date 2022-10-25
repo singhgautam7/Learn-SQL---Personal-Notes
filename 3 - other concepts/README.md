@@ -147,3 +147,67 @@ SELECT RIGHT("SQL Tutorial is cool", 4) AS ExtractString;
 -- OUTPUT -
 -- cool
 ```
+
+## BULK INSERT (from .csv file)
+```sql
+-- truncate the table first
+TRUNCATE TABLE Actors;
+GO
+
+-- import the file
+BULK INSERT Actors
+FROM '<path-to-file>'
+WITH
+(
+        FORMAT='CSV',
+        FIRSTROW=2
+)
+GO
+```
+
+## CASE
+- The CASE expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
+- Once a condition is true, it will stop reading and return the result.
+- If no conditions are true, it returns the value in the ELSE clause.
+- If there is no ELSE part and no conditions are true, it returns NULL.
+
+```sql
+-- Example 1
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN 'The quantity is greater than 30'
+    WHEN Quantity = 30 THEN 'The quantity is 30'
+    ELSE 'The quantity is under 30'
+END AS QuantityText
+FROM OrderDetails;
+
+-- Example 2
+SELECT CustomerName, City, Country
+FROM Customers
+ORDER BY
+(CASE
+    WHEN City IS NULL THEN Country
+    ELSE City
+END);
+```
+
+## Difference between IF and CASE
+The IF statement is useful if you’re trying to evaluate something to a TRUE/FALSE condition. The CASE statement is used when you have multiple possible conditions. You could accomplish the same thing with nested IF statements, but that gets messy.
+
+General structure of CASE is:
+```sql
+CASE x
+WHEN a THEN ..
+WHEN b THEN ..
+...
+ELSE
+END
+```
+
+General structure of IF:
+```sql
+IF (expr)
+THEN...
+ELSE...
+END
+```
