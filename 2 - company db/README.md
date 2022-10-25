@@ -203,7 +203,9 @@ SELECT DISTINCT sex FROM employee;
 
 ## Aggregation
 ```sql
-SELECT COUNT(super_id) FROM employee;
+SELECT COUNT(*) FROM employee;    -- count number of rows in table
+SELECT COUNT(super_id) FROM employee;       -- count number of super_id in table
+SELECT COUNT (DISTINCT super_id) from employee;     -- count number of distinct super id
 SELECT COUNT(emp_id) FROM employee WHERE sex = 'F' AND birth_day > '1970-01-01';
 SELECT AVG(SALARY) FROM employee;
 SELECT SUM(SALARY) FROM employee;
