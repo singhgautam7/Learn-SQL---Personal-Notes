@@ -131,3 +131,19 @@ A scalar function returns a single value based on the input value. Following are
 - **ROUND()** - Calculates the round-off integer value for a numeric field (or decimal point values).
 - **NOW()** - Returns the current date & time.
 - **FORMAT()** - Sets the format to display a collection of values.
+
+## LEFT() and RIGHT()
+- The **LEFT()** function extracts a number of characters from a string (starting from left).
+  - Syntax - `LEFT(string/column, number_of_chars)`
+- The **RIGHT()** function extracts a number of characters from a string (starting from right).
+  - - Syntax - `RIGHT(string/column, number_of_chars)`
+
+```sql
+SELECT LEFT('SQL Tutorial', 3) AS ExtractString;
+-- OUTPUT -
+-- SQL
+
+SELECT RIGHT("SQL Tutorial is cool", 4) AS ExtractString;
+-- OUTPUT -
+-- cool
+```

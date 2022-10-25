@@ -303,6 +303,7 @@ WHERE birth_day LIKE '____-10%';
 
 ## Union
 For union, same number of columns and same data type is required by both the queries from union.
+*NOTE* - ORDER BY clause should come after UNION not before
 - **UNION**: only keeps unique records
 - **UNION ALL**: keeps all records, including duplicates
 
