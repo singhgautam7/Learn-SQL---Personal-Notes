@@ -211,3 +211,45 @@ THEN...
 ELSE...
 END
 ```
+
+## Nested Queries examples
+```sql
+-- Nested scalar query
+SELECT URL
+FROM DigitalAssets
+WHERE AssetType = "Instagram" AND
+ActorId = (SELECT Id
+           FROM Actors
+           WHERE FirstName = "Brad");
+
+-- Nested column query
+-- Example using ANY
+SELECT FirstName, SecondName
+FROM Actors
+WHERE Id = ANY (SELECT ActorId
+                FROM DigitalAssets
+                WHERE AssetType = 'Facebook');
+
+-- Example using IN
+SELECT FirstName, SecondName
+FROM Actors
+WHERE Id IN (SELECT ActorId
+             FROM DigitalAssets
+             WHERE AssetType = 'Facebook');
+
+-- Example using ALL
+-- list of actors that have a net worth greater than all the actors whose first name starts with the letter ‘J’
+SELECT FirstName, SecondName
+FROM Actors
+WHERE NetworthInMillions > ALL (SELECT NetworthInMillions
+                                FROM Actors
+                                WHERE FirstName LIKE "j%");
+
+
+-- Nested row query
+SELECT FirstName
+FROM Actors
+WHERE (Id, MONTH(DoB), DAY(DoB))
+IN (SELECT ActorId, MONTH(LastUpdatedOn), DAY(LastUpdatedOn)
+     FROM DigitalAssets);
+```
