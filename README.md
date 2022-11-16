@@ -8,3 +8,4 @@
 ## Important links
 - [SQL interview questions](https://techtfq.com/blog/top-20-sql-interview-questions)
 - [Video on Clustered and Non-Clustered index](https://www.youtube.com/watch?v=ITcOiLSfVJQ)
+- [Difference between SQL and POSTgresSQL](https://www.fivetran.com/blog/postgresql-vs-mysql)
