@@ -299,6 +299,14 @@ WHERE birth_day LIKE '____-10-__';
 SELECT *
 FROM employee
 WHERE birth_day LIKE '____-10%';
+
+
+SELECT FirstName
+FROM Actors
+WHERE EXISTS (SELECT URL
+              FROM DigitalAssets
+              WHERE URL LIKE CONCAT("%",FirstName,"%")
+              AND AssetType="Twitter");
 ```
 
 ## Union
