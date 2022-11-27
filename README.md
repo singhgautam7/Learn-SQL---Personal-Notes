@@ -4,6 +4,7 @@
 1. [Student db](/1%20-%20student%20db/README.md)
 2. [Company db](/2%20-%20company%20db/README.md)
 3. [Other concepts](/3%20-%20other%20concepts/README.md)
+4. [Assets/Quick Revision](/assets/)
 
 ## Important links
 - [SQL interview questions](https://techtfq.com/blog/top-20-sql-interview-questions)
